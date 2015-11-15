@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RideShareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RideShareModelStoreContainer">
+          <EntitySet Name="Ride" EntityType="RideShareModel.Store.Ride" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RideCordinates" EntityType="RideShareModel.Store.RideCordinates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RiderInfo" EntityType="RideShareModel.Store.RiderInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="RideShareModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Vehicle" EntityType="RideShareModel.Store.Vehicle" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Ride_User" Association="RideShareModel.Store.FK_Ride_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Ride" EntitySet="Ride" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RideCordinates_Ride" Association="RideShareModel.Store.FK_RideCordinates_Ride">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="RideCordinates" EntitySet="RideCordinates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiderInfo_Ride" Association="RideShareModel.Store.FK_RiderInfo_Ride">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="RiderInfo" EntitySet="RiderInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiderInfo_User" Association="RideShareModel.Store.FK_RiderInfo_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="RiderInfo" EntitySet="RiderInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_User" Association="RideShareModel.Store.FK_Vehicle_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Ride">
+          <Key>
+            <PropertyRef Name="ride_id" />
+          </Key>
+          <Property Name="ride_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="from_location" Type="nchar" MaxLength="100" />
+          <Property Name="to_location" Type="nchar" MaxLength="100" />
+          <Property Name="ride_type" Type="nchar" MaxLength="20" />
+          <Property Name="available_seats" Type="int" />
+          <Property Name="status" Type="nchar" MaxLength="20" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="start_time" Type="time" />
+          <Property Name="estimated_end_time" Type="time" />
+          <Property Name="cost_status" Type="nchar" MaxLength="20" />
+          <Property Name="comments" Type="nchar" MaxLength="500" />
+          <Property Name="rating" Type="decimal" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="start_lattitude" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="start_longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="end_latitude" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="end_longitude" Type="decimal" Precision="9" Scale="6" />
+        </EntityType>
+        <EntityType Name="RideCordinates">
+          <Key>
+            <PropertyRef Name="ride_id" />
+            <PropertyRef Name="cord_id" />
+          </Key>
+          <Property Name="ride_id" Type="int" Nullable="false" />
+          <Property Name="cord_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="latitude" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="longitude" Type="decimal" Precision="9" Scale="6" />
+        </EntityType>
+        <EntityType Name="RiderInfo">
+          <Key>
+            <PropertyRef Name="ride_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="ride_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="start_location" Type="nchar" MaxLength="100" />
+          <Property Name="end_location" Type="nchar" MaxLength="100" />
+          <Property Name="pickup_time" Type="time" />
+          <Property Name="comments" Type="nchar" MaxLength="500" />
+          <Property Name="rating" Type="decimal" />
+          <Property Name="start_latitude" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="start_longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="end_latitude" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="end_longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="status" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="last_name" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="gender" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="user_name" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="password" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="email" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="location" Type="nchar" MaxLength="100" />
+          <Property Name="latitude" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="telephone" Type="nchar" MaxLength="20" />
+          <Property Name="token" Type="nchar" MaxLength="1000" />
+          <Property Name="rating" Type="decimal" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="vehicle_id" />
+          </Key>
+          <Property Name="vehicle_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="vehicle_no" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="50" />
+          <Property Name="available_seats" Type="int" />
+          <Property Name="fuel_consumption" Type="decimal" />
+          <Property Name="vehicle_rating" Type="decimal" />
+          <Property Name="comments" Type="nchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Ride_User">
+          <End Role="User" Type="RideShareModel.Store.User" Multiplicity="1" />
+          <End Role="Ride" Type="RideShareModel.Store.Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RideCordinates_Ride">
+          <End Role="Ride" Type="RideShareModel.Store.Ride" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RideCordinates" Type="RideShareModel.Store.RideCordinates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="ride_id" />
+            </Principal>
+            <Dependent Role="RideCordinates">
+              <PropertyRef Name="ride_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiderInfo_Ride">
+          <End Role="Ride" Type="RideShareModel.Store.Ride" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RiderInfo" Type="RideShareModel.Store.RiderInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="ride_id" />
+            </Principal>
+            <Dependent Role="RiderInfo">
+              <PropertyRef Name="ride_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiderInfo_User">
+          <End Role="User" Type="RideShareModel.Store.User" Multiplicity="1" />
+          <End Role="RiderInfo" Type="RideShareModel.Store.RiderInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="RiderInfo">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_User">
+          <End Role="User" Type="RideShareModel.Store.User" Multiplicity="1" />
+          <End Role="Vehicle" Type="RideShareModel.Store.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RideShareModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Rides" EntityType="RideShareModel.Ride" />
+          <EntitySet Name="RideCordinates" EntityType="RideShareModel.RideCordinate" />
+          <EntitySet Name="RiderInfoes" EntityType="RideShareModel.RiderInfo" />
+          <EntitySet Name="Users" EntityType="RideShareModel.User" />
+          <EntitySet Name="Vehicles" EntityType="RideShareModel.Vehicle" />
+          <AssociationSet Name="FK_Ride_User" Association="RideShareModel.FK_Ride_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ride" EntitySet="Rides" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RideCordinates_Ride" Association="RideShareModel.FK_RideCordinates_Ride">
+            <End Role="Ride" EntitySet="Rides" />
+            <End Role="RideCordinates" EntitySet="RideCordinates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiderInfo_Ride" Association="RideShareModel.FK_RiderInfo_Ride">
+            <End Role="Ride" EntitySet="Rides" />
+            <End Role="RiderInfo" EntitySet="RiderInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiderInfo_User" Association="RideShareModel.FK_RiderInfo_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RiderInfo" EntitySet="RiderInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_User" Association="RideShareModel.FK_Vehicle_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Vehicle" EntitySet="Vehicles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Ride">
+          <Key>
+            <PropertyRef Name="ride_id" />
+          </Key>
+          <Property Name="ride_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="from_location" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="to_location" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="ride_type" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="available_seats" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="start_time" Type="Time" Precision="7" />
+          <Property Name="estimated_end_time" Type="Time" Precision="7" />
+          <Property Name="cost_status" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="comments" Type="String" MaxLength="500" Unicode="true" FixedLength="true" />
+          <Property Name="rating" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="start_lattitude" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="start_longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="end_latitude" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="end_longitude" Type="Decimal" Precision="9" Scale="6" />
+          <NavigationProperty Name="User" Relationship="RideShareModel.FK_Ride_User" FromRole="Ride" ToRole="User" />
+          <NavigationProperty Name="RideCordinates" Relationship="RideShareModel.FK_RideCordinates_Ride" FromRole="Ride" ToRole="RideCordinates" />
+          <NavigationProperty Name="RiderInfoes" Relationship="RideShareModel.FK_RiderInfo_Ride" FromRole="Ride" ToRole="RiderInfo" />
+        </EntityType>
+        <EntityType Name="RideCordinate">
+          <Key>
+            <PropertyRef Name="ride_id" />
+            <PropertyRef Name="cord_id" />
+          </Key>
+          <Property Name="ride_id" Type="Int32" Nullable="false" />
+          <Property Name="cord_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="latitude" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="longitude" Type="Decimal" Precision="9" Scale="6" />
+          <NavigationProperty Name="Ride" Relationship="RideShareModel.FK_RideCordinates_Ride" FromRole="RideCordinates" ToRole="Ride" />
+        </EntityType>
+        <EntityType Name="RiderInfo">
+          <Key>
+            <PropertyRef Name="ride_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="ride_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="start_location" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="end_location" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="pickup_time" Type="Time" Precision="7" />
+          <Property Name="comments" Type="String" MaxLength="500" Unicode="true" FixedLength="true" />
+          <Property Name="rating" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="start_latitude" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="start_longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="end_latitude" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="end_longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="status" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Ride" Relationship="RideShareModel.FK_RiderInfo_Ride" FromRole="RiderInfo" ToRole="Ride" />
+          <NavigationProperty Name="User" Relationship="RideShareModel.FK_RiderInfo_User" FromRole="RiderInfo" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="user_name" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="location" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="latitude" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="telephone" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="token" Type="String" MaxLength="1000" Unicode="true" FixedLength="true" />
+          <Property Name="rating" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Rides" Relationship="RideShareModel.FK_Ride_User" FromRole="User" ToRole="Ride" />
+          <NavigationProperty Name="RiderInfoes" Relationship="RideShareModel.FK_RiderInfo_User" FromRole="User" ToRole="RiderInfo" />
+          <NavigationProperty Name="Vehicles" Relationship="RideShareModel.FK_Vehicle_User" FromRole="User" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="vehicle_id" />
+          </Key>
+          <Property Name="vehicle_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="vehicle_no" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="available_seats" Type="Int32" />
+          <Property Name="fuel_consumption" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="vehicle_rating" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="comments" Type="String" MaxLength="500" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="User" Relationship="RideShareModel.FK_Vehicle_User" FromRole="Vehicle" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Ride_User">
+          <End Role="User" Type="RideShareModel.User" Multiplicity="1" />
+          <End Role="Ride" Type="RideShareModel.Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RideCordinates_Ride">
+          <End Role="Ride" Type="RideShareModel.Ride" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RideCordinates" Type="RideShareModel.RideCordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="ride_id" />
+            </Principal>
+            <Dependent Role="RideCordinates">
+              <PropertyRef Name="ride_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiderInfo_Ride">
+          <End Role="Ride" Type="RideShareModel.Ride" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RiderInfo" Type="RideShareModel.RiderInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="ride_id" />
+            </Principal>
+            <Dependent Role="RiderInfo">
+              <PropertyRef Name="ride_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiderInfo_User">
+          <End Role="User" Type="RideShareModel.User" Multiplicity="1" />
+          <End Role="RiderInfo" Type="RideShareModel.RiderInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="RiderInfo">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_User">
+          <End Role="User" Type="RideShareModel.User" Multiplicity="1" />
+          <End Role="Vehicle" Type="RideShareModel.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RideShareModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Rides">
+            <EntityTypeMapping TypeName="RideShareModel.Ride">
+              <MappingFragment StoreEntitySet="Ride">
+                <ScalarProperty Name="ride_id" ColumnName="ride_id" />
+                <ScalarProperty Name="from_location" ColumnName="from_location" />
+                <ScalarProperty Name="to_location" ColumnName="to_location" />
+                <ScalarProperty Name="ride_type" ColumnName="ride_type" />
+                <ScalarProperty Name="available_seats" ColumnName="available_seats" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="estimated_end_time" ColumnName="estimated_end_time" />
+                <ScalarProperty Name="cost_status" ColumnName="cost_status" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="start_lattitude" ColumnName="start_lattitude" />
+                <ScalarProperty Name="start_longitude" ColumnName="start_longitude" />
+                <ScalarProperty Name="end_latitude" ColumnName="end_latitude" />
+                <ScalarProperty Name="end_longitude" ColumnName="end_longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RideCordinates">
+            <EntityTypeMapping TypeName="RideShareModel.RideCordinate">
+              <MappingFragment StoreEntitySet="RideCordinates">
+                <ScalarProperty Name="ride_id" ColumnName="ride_id" />
+                <ScalarProperty Name="cord_id" ColumnName="cord_id" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiderInfoes">
+            <EntityTypeMapping TypeName="RideShareModel.RiderInfo">
+              <MappingFragment StoreEntitySet="RiderInfo">
+                <ScalarProperty Name="ride_id" ColumnName="ride_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="start_location" ColumnName="start_location" />
+                <ScalarProperty Name="end_location" ColumnName="end_location" />
+                <ScalarProperty Name="pickup_time" ColumnName="pickup_time" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="start_latitude" ColumnName="start_latitude" />
+                <ScalarProperty Name="start_longitude" ColumnName="start_longitude" />
+                <ScalarProperty Name="end_latitude" ColumnName="end_latitude" />
+                <ScalarProperty Name="end_longitude" ColumnName="end_longitude" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RideShareModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="RideShareModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="vehicle_id" ColumnName="vehicle_id" />
+                <ScalarProperty Name="vehicle_no" ColumnName="vehicle_no" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="available_seats" ColumnName="available_seats" />
+                <ScalarProperty Name="fuel_consumption" ColumnName="fuel_consumption" />
+                <ScalarProperty Name="vehicle_rating" ColumnName="vehicle_rating" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

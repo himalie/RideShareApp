@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RideShareModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Rides">
+      <EntityTypeMapping TypeName="RideShareModel.Ride">
+        <MappingFragment StoreEntitySet="Ride">
+          <ScalarProperty Name="ride_id" ColumnName="ride_id" />
+          <ScalarProperty Name="from_location" ColumnName="from_location" />
+          <ScalarProperty Name="to_location" ColumnName="to_location" />
+          <ScalarProperty Name="ride_type" ColumnName="ride_type" />
+          <ScalarProperty Name="available_seats" ColumnName="available_seats" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="estimated_end_time" ColumnName="estimated_end_time" />
+          <ScalarProperty Name="cost_status" ColumnName="cost_status" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="start_lattitude" ColumnName="start_lattitude" />
+          <ScalarProperty Name="start_longitude" ColumnName="start_longitude" />
+          <ScalarProperty Name="end_latitude" ColumnName="end_latitude" />
+          <ScalarProperty Name="end_longitude" ColumnName="end_longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RideCordinates">
+      <EntityTypeMapping TypeName="RideShareModel.RideCordinate">
+        <MappingFragment StoreEntitySet="RideCordinates">
+          <ScalarProperty Name="ride_id" ColumnName="ride_id" />
+          <ScalarProperty Name="cord_id" ColumnName="cord_id" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RiderInfoes">
+      <EntityTypeMapping TypeName="RideShareModel.RiderInfo">
+        <MappingFragment StoreEntitySet="RiderInfo">
+          <ScalarProperty Name="ride_id" ColumnName="ride_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="start_location" ColumnName="start_location" />
+          <ScalarProperty Name="end_location" ColumnName="end_location" />
+          <ScalarProperty Name="pickup_time" ColumnName="pickup_time" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="start_latitude" ColumnName="start_latitude" />
+          <ScalarProperty Name="start_longitude" ColumnName="start_longitude" />
+          <ScalarProperty Name="end_latitude" ColumnName="end_latitude" />
+          <ScalarProperty Name="end_longitude" ColumnName="end_longitude" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RideShareModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehicles">
+      <EntityTypeMapping TypeName="RideShareModel.Vehicle">
+        <MappingFragment StoreEntitySet="Vehicle">
+          <ScalarProperty Name="vehicle_id" ColumnName="vehicle_id" />
+          <ScalarProperty Name="vehicle_no" ColumnName="vehicle_no" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="available_seats" ColumnName="available_seats" />
+          <ScalarProperty Name="fuel_consumption" ColumnName="fuel_consumption" />
+          <ScalarProperty Name="vehicle_rating" ColumnName="vehicle_rating" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
