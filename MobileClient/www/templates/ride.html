@@ -1,0 +1,93 @@
+<ion-view title="Ride" ng-init="loadRide()">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+   <ion-nav-buttons side="right">
+    <button menu-toggle="right"class="button button-icon ion-more" ng-click="popover.show($event)"></button>
+  </ion-nav-buttons>
+<script id="ride.html" type="text/ng-template">
+    <ion-popover-view>
+      <ion-content>
+          <div class="list">
+            <a class="item" ng-class="{disabled: !(rideAuthor==currentUserr)}" ng-click="loadRide()" ui-sref="app.ride({ rideId: {{currentRideId}}, editable: true})" >
+              Edit
+            </a>
+            <a class="item" ng-class="{disabled: !(rideAuthor==currentUserr)}" type="submit" ng-click="deleteRide()">
+              Delete
+            </a>
+            <a class="item" ng-class="{disabled: !(rideAuthor==currentUserr && status==statusP)}" type="submit" ng-click="startRide()">
+              Start Journey
+            </a>
+            <a class="item" ng-class="{disabled: !(rideAuthor==currentUserr && status ==statusS)}" type="submit" ng-click="endRide()">
+              End Journey
+            </a>
+            <a class="item" ng-class="{disabled: !(rideAuthor!=currentUserr && status ==statusP)}" type="submit" ng-click="joinRide()">
+              Join
+            </a>
+            <a class="item" ng-class="{disabled: !(rideAuthor!=currentUserr && status ==statusP)}" type="submit" ng-click="leaveRide()">
+              Leave ride
+            </a>
+            <a class="item" ng-class="{disabled: !(rideAuthor==currentUserr)}" type="submit" ng-click="viewPassengers()">
+              View Passengers
+            </a>
+            <a class="item" ng-class="{disabled: !(passenger && status ==statusC)}" type="submit" ng-click="loadRateRide()">
+              Rate Ride
+            </a>
+          </div>
+        </ion-content>
+    </ion-popover-view>
+  </script>
+
+  <ion-content class="has-header" style= "height:100%;width:100%">
+
+    <form ng-init="loadRide()">
+      <div class="list">
+        <div class="item item-stacked-label wrap">
+        	<span class="col title-label">From</span>
+        	<span class="col" ng-model="rideDetails.from_location" class="wrap">{{rideDetails.from_location}}</span>
+        </div>
+        <div class="item item-stacked-label wrap">
+          <span class="col title-label">To</span>
+          <span class="col" ng-model="rideDetails.to_location" class="wrap">{{rideDetails.to_location}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Available seats </span>
+          <span class="col" ng-model="rideDetails.available_seats" >{{rideDetails.available_seats}}</span>
+        </div>
+
+         <div class="item item-stacked-label">
+          <span class="col title-label">Start Date </span>
+          <span class="col" ng-model="rideDetails.start_date" >{{rideDetails.start_date | date:'mediumDate'}}</span>
+        </div>
+
+         <div class="item item-stacked-label">
+          <span class="col title-label">Start Time </span>
+          <span class="col" ng-model="rideDetails.start_time" >{{rideDetails.start_time}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Ride Type</span>
+          <span class="col" ng-model="rideDetails" >{{rideDetails.ride_type}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Current status of the ride</span>
+          <span class="col" ng-model="rideDetails" >{{rideDetails.status}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Comments</span>
+          <span class="col" ng-model="rideDetails" >{{rideDetails.comments}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Ride Owner</span>
+          <a class="col" ng-model="rideDetails.User" ui-sref="app.user({ userId: rideDetails.User.user_id})">{{rideDetails.User.first_name}} &nbsp; {{rideDetails.User.last_name}}</a>
+        </div>
+
+        <div>
+        <div id="map" data-tap-disabled="true" style= "height:800px;width:100%"></div>
+        </div>
+      </div>
+    </form>
+
+  </ion-content>
+
+
+</ion-view>

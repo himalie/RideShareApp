@@ -1,0 +1,70 @@
+<ion-view title="User" ng-init="loadUser()">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header" style= "height:100%;width:100%">
+
+    <form ng-init="">
+      <div class="list">
+        <div class="item item-stacked-label">
+          <span class="col title-label">Name</span>
+         <span class="col"  ><b>{{userDetails.first_name}} &nbsp; {{userDetails.last_name}} </b></span> 
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">User Name</span>
+         <span class="col" ng-model="userDetails.user_name" >{{userDetails.user_name}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Email</span>
+         <span class="col" ng-model="userDetails.email" >{{userDetails.email}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Telephone No</span>
+         <span class="col" ng-model="userDetails.telephone" >{{userDetails.telephone}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Gender</span>
+         <span class="col" ng-model="userDetails.gender" >{{userDetails.gender}}</span>
+        </div>
+        <div class="item item-stacked-label">
+          <span class="col title-label">Location</span>
+          <span class="col" ng-model="userDetails.location" >{{userDetails.location}}</span>
+        </div>
+        <div class="item item-stacked-label" ng-show="userDetails.rating">
+          <span class="col title-label">Rating</span>
+          <span class="col user-rating" ng-model="userDetails.rating" >{{userDetails.rating}}/5</span>
+        </div>
+        <div class="item item-stacked-label">
+         <!--  <span class="col title-label">View Vehicles</span> -->
+          <div class="buttons">
+            <button class="button button-positive" ng-click="viewVehicles()">View vehicles</button>
+          </div>
+        </div>
+      </div>
+  </form>
+</ion-content>
+</ion-view>
+
+
+<!-- 
+<ion-view title="User">
+<ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">  	
+    <label class="item item-input">
+          <span class="input-label">user data :: </span>
+          <p ng-model="users"> {{users}}</p>
+    </label>
+    <br>
+    <table >
+      come here
+      <tr ng-repeat="x in users">
+        <td>{{ x.first_name.trim() }} &nbsp</td>
+        <td>{{ x.last_name.trim() }}</td>
+      </tr>
+    </table>
+        
+  </ion-content>
+</ion-view>
+ --> 
